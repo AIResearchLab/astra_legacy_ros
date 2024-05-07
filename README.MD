@@ -4,14 +4,24 @@
 
 ### ROS2 environment configuration
 
-● Please refer to the official [ROS 2 installation guide](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
+● Please refer to the official [ROS 2 Foxy installation guide](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
+● Please refer to the official [ROS 2 Humble installation guide](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
 
-### Install dependencies
+### Install binary dependencies
 
 ● Install binary dependencies
 
 ```bash
-sudo apt install libgflags-dev nlohmann-json3-dev ros-humble-image-transport ros-humble-image-publisher
+sudo apt install libgflags-dev nlohmann-json3-dev ros-$ROS_DISTRO-image-transport ros-$ROS_DISTRO-image-publisher ros-$ROS_DISTRO-camera-info-manager
+```
+
+### Install other dependencies
+
+Better to create a folder named SDK in ubuntu home folder to keep following,
+
+```bash
+mkdir -p ~/SDK
+cd ~/SDK
 ```
 
 ● Install glog
@@ -24,6 +34,7 @@ mkdir build && cd build
 cmake .. && make -j4
 sudo make install
 sudo ldconfig  # Refreshing the link library
+cd ~/SDK
 ```
 
 ● Install magic_enum
@@ -37,6 +48,7 @@ mkdir build && cd build
 cmake .. && make -j4
 sudo make install
 sudo ldconfig # Refreshing the link library
+cd ~/SDK
 ```
 
 ● Install libuvc
@@ -48,27 +60,30 @@ mkdir build && cd build
 cmake .. && make -j4
 sudo make install
 sudo ldconfig # Refreshing the link library
+cd ~/SDK
 ```
 
-### Cloning and setting up libusb rules
+### Cloning the repository
 
 ● Create a new ros2 workspace or navigate to existing workspace
 
 ```bash
-mkdir -p ~/xavier/src
-cd ~/xavier/src
+mkdir -p ~/workspace/src
+cd ~/workspace/src
 ```
 
 ● Clone the camera package into the ros2 workspace
 
 ```bash
-git clone https://github.com/IntellisenseLab/xavier_astra.git
+git clone https://github.com/AIResearchLab/astra_legacy_ros.git
 ```
+
+### Setting up libusb rules
 
 ● Install libusb rules
 
 ```bash
-cd ~/xavier/src/xavier_astra/astra_camera/scripts
+cd ~/src/astra_legacy_ros/astra_camera/scripts
 sudo bash install.sh
 sudo udevadm control --reload-rules && sudo udevadm trigger
 ```
@@ -76,8 +91,6 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 ### Compiling
 
 ```bash
-cd ~/xavier
-source /opt/ros/humble/setup.bash 
 colcon build --event-handlers  console_direct+  --cmake-args  -DCMAKE_BUILD_TYPE=Release
 ```
 
@@ -86,17 +99,15 @@ colcon build --event-handlers  console_direct+  --cmake-args  -DCMAKE_BUILD_TYPE
 ● In terminal 1
 
 ```bash
-source /opt/ros/humble/setup.bash 
 source ./install/setup.bash 
-ros2 launch astra_camera astra_mini.launch.py
+ros2 launch astra_camera astra_pro.launch.py
 ```
 
 ● In terminal 2
 
 ```bash
-source /opt/ros/humble/setup.bash 
 source ./install/setup.bash 
-rviz2 -d src/xavier_astra/astra_camera/rviz/pointcloud.rviz
+rviz2 -d src/astra_legacy_ros/astra_camera/rviz/pointcloud.rviz
 ```
 
 ### Additional information for troubleshooting and advance configuration
@@ -104,7 +115,6 @@ rviz2 -d src/xavier_astra/astra_camera/rviz/pointcloud.rviz
 ● List topics / services/ parameters (open a new terminal)
 
 ```bash
-source /opt/ros/humble/setup.bash 
 ros2 topic list
 ros2 service list
 ros2 param list
