@@ -83,7 +83,7 @@ git clone https://github.com/AIResearchLab/astra_legacy_ros.git
 ● Install libusb rules
 
 ```bash
-cd ~/src/astra_legacy_ros/astra_camera/scripts
+cd ~/workspace/src/astra_legacy_ros/astra_camera/scripts
 sudo bash install.sh
 sudo udevadm control --reload-rules && sudo udevadm trigger
 ```
