@@ -91,6 +91,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 ### Compiling
 
 ```bash
+cd ~/workspace/src
 colcon build --event-handlers  console_direct+  --cmake-args  -DCMAKE_BUILD_TYPE=Release
 ```
 
