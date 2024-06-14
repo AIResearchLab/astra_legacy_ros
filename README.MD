@@ -4,8 +4,7 @@
 
 ### ROS2 environment configuration
 
-● Please refer to the official [ROS 2 Foxy installation guide](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)
-● Please refer to the official [ROS 2 Humble installation guide](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
+- Please refer to the official [ROS 2 Humble installation guide](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
 
 ### Install binary dependencies
 
