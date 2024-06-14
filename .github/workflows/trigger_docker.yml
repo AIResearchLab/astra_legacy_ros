@@ -15,11 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Trigger Workflow in Kobuki Docker Repository
+      - name: Trigger Workflow in Astra_legacy docker Repository
         run: |
           # Set the required variables
           repo_owner="airesearchlab" 
-          repo_name="kobuki_docker"  
+          repo_name="astra_legacy_docker"  
           event_type="trigger-workflow" 
   
           curl -L \
