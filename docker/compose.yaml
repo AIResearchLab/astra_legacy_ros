@@ -1,0 +1,9 @@
+services:
+  astra_legacy:
+    image: ghcr.io/airesearchlab/astra_legacy:humble
+    command: ros2 launch astra_camera astra_pro.launch.py
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    volumes:
+      - /dev:/dev

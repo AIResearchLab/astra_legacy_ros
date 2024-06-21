@@ -1,0 +1,63 @@
+name: ROS Humble Astra Legacy Control stack
+
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - ".github/workflows/astra_legacy_jammy_humble.yml"
+      - "docker/Dockerfile"
+      - "docker/workspace_entrypoint.sh"
+
+  pull_request:
+    branches: 
+      - main
+    paths:
+      - ".github/workflows/astra_legacy_jammy_humble.yml"
+      - "docker/Dockerfile"
+      - "docker/workspace_entrypoint.sh"
+
+env:
+  REGISTRY: ghcr.io
+  OWNER: airesearchlab
+  IMAGE_NAME: astra_legacy
+
+# https://docs.github.com/en/actions/using-jobs/using-concurrency
+concurrency:
+  # only cancel in-progress jobs or runs for the current workflow - matches against branch & tags
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+  
+jobs:
+
+  build-and-push-image:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to the Container registry
+        run: |
+          docker login --username ${{ env.OWNER }} --password ${{ secrets.GH_PAT }} ghcr.io 
+
+      - name: Build and Push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./docker/
+          file: Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.IMAGE_NAME }}:humble

@@ -1,4 +1,61 @@
-# OpenNI2 SDK for ROS2
+# Astra Packages
+
+Astra packages for astra legacy (first generation) cameras in AMD64 and ARM64 systems with ROS2 Humble.
+
+## Docker Container
+
+### Usage with docker compose
+
+Add the following snippet under `services` to any compose.yaml file to add this container.
+
+```bash
+  astra_legacy:
+    image: ghcr.io/airesearchlab/astra_legacy:humble
+    command: ros2 launch astra_camera astra_pro.launch.py
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    volumes:
+      - /dev:/dev
+```
+
+### Setup for Pulling container from ghcr.io
+
+Clone this reposiotory
+
+```bash
+git clone https://github.com/AIResearchLab/astra_legacy_ros.git
+```
+
+Pull the Docker image and run Docker compose (No need to run `docker compose build`)
+```bash
+cd astra_legacy_ros/docker
+docker compose pull
+```
+
+Start the docker container
+```bash
+docker compose up
+```
+
+### Setup for building the container on device
+
+Clone this reposiotory
+
+```bash
+git clone https://github.com/AIResearchLab/astra_legacy_ros.git
+```
+
+Build the Docker image
+```bash
+cd astra_legacy_ros/docker
+docker compose -f compose-build.yaml build
+```
+
+Start the docker container
+```bash
+docker compose -f compose-build.yaml up
+```
 
 ## Environment configuration
 
