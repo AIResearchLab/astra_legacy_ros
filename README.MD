@@ -19,7 +19,7 @@ Add the following snippet under `services` to any compose.yaml file to add this 
       - /dev:/dev
 ```
 
-### Setup for Pulling container from ghcr.io
+### Setup for pulling container from ghcr.io
 
 Clone this reposiotory
 
@@ -27,14 +27,10 @@ Clone this reposiotory
 git clone https://github.com/AIResearchLab/astra_legacy_ros.git
 ```
 
-Pull the Docker image and run Docker compose (No need to run `docker compose build`)
+Pull the Docker image and start compose (No need to run `docker compose build`)
 ```bash
 cd astra_legacy_ros/docker
 docker compose pull
-```
-
-Start the docker container
-```bash
 docker compose up
 ```
 
@@ -46,14 +42,10 @@ Clone this reposiotory
 git clone https://github.com/AIResearchLab/astra_legacy_ros.git
 ```
 
-Build the Docker image
+Build the Docker image and start compose
 ```bash
 cd astra_legacy_ros/docker
 docker compose -f compose-build.yaml build
-```
-
-Start the docker container
-```bash
 docker compose -f compose-build.yaml up
 ```
 
@@ -61,11 +53,11 @@ docker compose -f compose-build.yaml up
 
 ### ROS2 environment configuration
 
-- Please refer to the official [ROS 2 Humble installation guide](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
+Please refer to the official [ROS 2 Humble installation guide](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html) for ubuntu 22.04
 
 ### Install binary dependencies
 
-● Install binary dependencies
+Install binary dependencies
 
 ```bash
 sudo apt install libgflags-dev nlohmann-json3-dev ros-$ROS_DISTRO-image-transport ros-$ROS_DISTRO-image-publisher ros-$ROS_DISTRO-camera-info-manager
@@ -80,7 +72,7 @@ mkdir -p ~/SDK
 cd ~/SDK
 ```
 
-● Install glog
+Install glog
 
 ```bash
 wget -c https://github.com/google/glog/archive/refs/tags/v0.6.0.tar.gz  -O glog-0.6.0.tar.gz
@@ -93,7 +85,7 @@ sudo ldconfig  # Refreshing the link library
 cd ~/SDK
 ```
 
-● Install magic_enum
+Install magic_enum
 
 ```bash
 wget -c https://github.com/Neargye/magic_enum/archive/refs/tags/v0.8.0.tar.gz -O  magic_enum-0.8.0.tar.gz
@@ -107,7 +99,7 @@ sudo ldconfig # Refreshing the link library
 cd ~/SDK
 ```
 
-● Install libuvc
+Install libuvc
 
 ```bash
 git clone https://github.com/libuvc/libuvc.git
@@ -121,14 +113,14 @@ cd ~/SDK
 
 ### Cloning the repository
 
-● Create a new ros2 workspace or navigate to existing workspace
+Create a new ros2 workspace or navigate to existing workspace
 
 ```bash
 mkdir -p ~/workspace/src
 cd ~/workspace/src
 ```
 
-● Clone the camera package into the ros2 workspace
+Clone the camera package into the ros2 workspace
 
 ```bash
 git clone https://github.com/AIResearchLab/astra_legacy_ros.git
@@ -136,7 +128,7 @@ git clone https://github.com/AIResearchLab/astra_legacy_ros.git
 
 ### Setting up libusb rules
 
-● Install libusb rules
+Install libusb rules
 
 ```bash
 cd ~/workspace/src/astra_legacy_ros/astra_camera/scripts
@@ -153,14 +145,14 @@ colcon build --event-handlers  console_direct+  --cmake-args  -DCMAKE_BUILD_TYPE
 
 ### Starting the camera
 
-● In terminal 1
+In terminal 1
 
 ```bash
 source ./install/setup.bash 
 ros2 launch astra_camera astra_pro.launch.py
 ```
 
-● In terminal 2
+In terminal 2
 
 ```bash
 source ./install/setup.bash 
