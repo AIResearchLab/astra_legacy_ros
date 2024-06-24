@@ -1,6 +1,8 @@
 name: ROS Humble Astra Legacy Control stack
 
 on:
+  workflow_dispatch:
+
   push:
     branches: 
       - main
