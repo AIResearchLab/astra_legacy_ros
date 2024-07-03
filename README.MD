@@ -29,7 +29,7 @@ git clone https://github.com/AIResearchLab/astra_legacy_ros.git
 
 Pull the Docker image and start compose (No need to run `docker compose build`)
 ```bash
-cd astra_legacy_ros/docker
+cd src/astra_legacy_ros/docker
 docker compose pull
 docker compose up
 ```
@@ -44,7 +44,7 @@ git clone https://github.com/AIResearchLab/astra_legacy_ros.git
 
 Build the Docker image and start compose
 ```bash
-cd astra_legacy_ros/docker
+cd src/astra_legacy_ros/docker
 docker compose -f compose-build.yaml build
 docker compose -f compose-build.yaml up
 ```
