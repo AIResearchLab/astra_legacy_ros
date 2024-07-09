@@ -2,9 +2,7 @@
 
 Astra packages for astra legacy (first generation) cameras in AMD64 and ARM64 systems with ROS2 Humble.
 
-## Docker Container
-
-### Usage with docker compose
+## Usage with docker compose
 
 Add the following snippet under `services` to any compose.yaml file to add this container.
 
@@ -18,6 +16,7 @@ Add the following snippet under `services` to any compose.yaml file to add this 
     volumes:
       - /dev:/dev
 ```
+## Usage with Docker
 
 ### Setup for pulling container from ghcr.io
 
